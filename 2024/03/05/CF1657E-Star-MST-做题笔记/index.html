@@ -19,30 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"atzdhjeb.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。">
+    <meta name="description" content="我太摆了，2023.11.8 做的题现在才补博客。 题意：$n$ 个点的无向完全图，边权在 $[1,k]$ 中，要求该图 MST 的权值等于 $1$ 号点所有边的边权和，求构图方案数，对 $998244353$ 取模。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P1987 摇钱树 做题笔记">
-<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="CF1657E Star MST 做题笔记">
+<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/05/CF1657E-Star-MST-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="ATZdhjeb&#39;s Blog">
-<meta property="og:description" content="题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。">
+<meta property="og:description" content="我太摆了，2023.11.8 做的题现在才补博客。 题意：$n$ 个点的无向完全图，边权在 $[1,k]$ 中，要求该图 MST 的权值等于 $1$ 号点所有边的边权和，求构图方案数，对 $998244353$ 取模。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-05T08:05:57.000Z">
-<meta property="article:modified_time" content="2024-03-05T08:42:35.677Z">
+<meta property="article:published_time" content="2024-03-05T10:53:22.000Z">
+<meta property="article:modified_time" content="2024-03-05T10:54:05.932Z">
 <meta property="article:author" content="ATZdhjeb">
-<meta property="article:tag" content="做题笔记">
-<meta property="article:tag" content="背包">
-<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="数数">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/05/CF1657E-Star-MST-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/","path":"2024/03/05/P1987-摇钱树-做题笔记/","title":"P1987 摇钱树 做题笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/05/CF1657E-Star-MST-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/","path":"2024/03/05/CF1657E-Star-MST-做题笔记/","title":"CF1657E Star MST 做题笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>P1987 摇钱树 做题笔记 | ATZdhjeb's Blog</title>
+<title>CF1657E Star MST 做题笔记 | ATZdhjeb's Blog</title>
   
 
 
@@ -166,7 +165,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/05/CF1657E-Star-MST-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -179,12 +178,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="P1987 摇钱树 做题笔记 | ATZdhjeb's Blog">
+      <meta itemprop="name" content="CF1657E Star MST 做题笔记 | ATZdhjeb's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          P1987 摇钱树 做题笔记
+          CF1657E Star MST 做题笔记
         </h1>
 
         <div class="post-meta-container">
@@ -196,7 +195,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-03-05 16:05:57 / 修改时间：16:42:35" itemprop="dateCreated datePublished" datetime="2024-03-05T16:05:57+08:00">2024-03-05</time>
+      <time title="创建时间：2024-03-05 18:53:22 / 修改时间：18:54:05" itemprop="dateCreated datePublished" datetime="2024-03-05T18:53:22+08:00">2024-03-05</time>
     </span>
 
   
@@ -208,15 +207,33 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。</p>
+    <div class="post-body" itemprop="articleBody"><p><del>我太摆了，2023.11.8 做的题现在才补博客。</del></p>
+<p>题意：$n$ 个点的无向完全图，边权在 $[1,k]$ 中，要求该图 MST 的权值等于 $1$ 号点所有边的边权和，求构图方案数，对 $998244353$ 取模。</p>
 <span id="more"></span>
 
-<p>$n,k\le10^3$</p>
-<p>$a_i,b_i\le10^5$</p>
-<p>一个比较一眼的贪心是按 $b_i$ 对物品排序，然后用 $0&#x2F;1$ 背包的思想依次考虑每个物品选或不选时的贡献。由于这个做法过于一眼，导致我以为它是错的，但是它是对的。证明如下：</p>
-<p>考虑感性理解，因为 $0&#x2F;1$ 背包的答案不受物品加入顺序的影响，所以我们可以任意对物品重定序。而如果一个 $b_i$ 较大的物品和一个 $b_i$ 较小的物品都要选，那它们对答案的贡献都会加上各自 $a_i$，差异仅在于最后减去的 $b_i$ 值。那么把 $b_i$ 大的放在前面先选，可以使得 $b_i$ 的损失最小化。</p>
-<p>然后就做完了。时间复杂度 $O(nk)$。</p>
-<p><strong>多测不清空，10 pts 两行泪。</strong></p>
+
+
+<p>数据范围：$n,k \le 250$。</p>
+<p>下文用 $a_i$ 或点 $i$ 的权值表示边 $(1,i)$ 的权值。</p>
+<p>原题目限制明显等价于边 $(1,2),(1,3),…,(1,n)$ 构成了该图的 MST，那么有一个显然的 DP 方向，即令 $f_{i,j}$ 代表考虑到了点 $i$，且 $a_i&#x3D;j$ 的方案数，但是需要注意到一个事实，即在此题中只有点 $1$ 的编号是重要的，其余点的编号珂以互换，这也算不同的方案，故这种状态不能得出正确答案。</p>
+<p>考虑一个更宽泛的状态，令 $f_{i,j}$ 表示已考虑过的点集 $S$ 满足 $|S| &#x3D; i$ 且 $\max\limits_{l\in S}a_l&#x3D;j$，那么有一种暴力的转移方式，即枚举 $l \in [1,i)$，再枚举 $w\in[1,j)$，表示已经考虑了 $l$ 个点的最大值为 $w$ 时的情况，并且 <strong>钦定新加入的 $i-l$ 个点的权值均为 $j$。</strong></p>
+<p>这里要钦定新加入点的权值均为 $j$ 的原因：</p>
+<ol>
+<li><p>不钦定的话难以转移。</p>
+</li>
+<li><p>若不钦定，则可能存在新加入的点 $u$ 满足 $a_u \le w$，此时同样珂以把 $u$ 归入从 $f_{l+1,w}$ 转移时的贡献里，则转移重复。</p>
+</li>
+</ol>
+<p>接下来考虑计算，因为考虑完了 $l$ 个点之后还剩 $n - l$ 个点，而我们要从中选 $i - l$ 个将其权值赋为 $j$，故有 $\binom{n-l}{i-l}$ 种方案；还要考虑边权对图的形态的影响，且，<strong>我们在这里只需要考虑新一个点与已加入点之间的边权的影响</strong>。</p>
+<p>为什么：</p>
+<p>令 $u$ 是一个本次加入的点，$v$ 是一个于 $f_{i’,j’}$ 加入的点，且 $i’&gt;i$，即 $v$ 在 $u$ 之后加入，且 $a_v&#x3D;j’$，那么根据我们的转移方式， $f_{i,j}$ 会对 $f_{i’,j’}$ 做出贡献，当且仅当 $j &lt; j’$。考虑一条边 $(s,t)$ 的权值，应满足 $w_{s,t} \ge \max {a_s,a_t}$，原因显然。而此时，有 $a_u &#x3D; j,a_v &#x3D; j’,j &lt; j’$，故有 $a_u &lt; a_v$，即 $w_{u,v} \ge a_v$，即 $w_{u,v}$ 只受 $v$ 的限制。</p>
+<p>证毕。</p>
+<p>由上，在加入第 $u$ 个点时，它应连 $u-2$ 条边权 $\in[j,k]$ 的边，对答案做出 $(k-j+1)^{u-2}$ 的贡献。</p>
+<p>那么递推式就呼之欲出了：$f_{i,j}&#x3D;\sum\limits_{l&#x3D;1}^{i-1}\binom{n-l}{i-l}\left(\sum\limits_{w&#x3D;1}^{j-1}f_{l,w}\right)\prod\limits_{u&#x3D;l+1}^{i}(k-j+1)^{u-2}$</p>
+<p>直接暴力转移的复杂度是 $O(n^4)$ 的，但是显然珂以前缀和优化，令 $S_{i,j}&#x3D;\sum\limits_{w&#x3D;1}^{j}f_{i,w}$，我们继续化简柿子：</p>
+<p>$$<br>f_{i,j}&#x3D;\sum\limits_{l&#x3D;1}^{i-1}\binom{n-l}{i-l}S_{l,j-1}(k-j+1)^{\sum\limits_{u&#x3D;l+1}^{i}(u-2)}<br>$$</p>
+<p>$$<br>&#x3D;\sum\limits_{l&#x3D;1}^{i-1}\binom{n-l}{i-l}S_{l,j-1}(k-j+1)^{\frac{(i-l)(i+l-3)}{2}}<br>$$</p>
+<p>转移的时候顺手维护下前缀和，然后就可以 $O(n^2k\log n)$ 地做了，带 $\log$ 是因为有快速幂。</p>
 
     </div>
 
@@ -226,19 +243,21 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="tag"># 做题笔记</a>
-              <a href="/tags/%E8%83%8C%E5%8C%85/" rel="tag"># 背包</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/tags/dp/" rel="tag"># dp</a>
+              <a href="/tags/%E6%95%B0%E6%95%B0/" rel="tag"># 数数</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/03/05/CF1929D-Sasha-and-a-Walk-in-the-City-%E9%A2%98%E8%A7%A3/" rel="prev" title="CF1929D Sasha and a Walk in the City 题解">
+                  <i class="fa fa-angle-left"></i> CF1929D Sasha and a Walk in the City 题解
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/03/05/P5038-SCOI2012-%E5%A5%87%E6%80%AA%E7%9A%84%E6%B8%B8%E6%88%8F-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="next" title="P5038 [SCOI2012] 奇怪的游戏 做题笔记">
-                  P5038 [SCOI2012] 奇怪的游戏 做题笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/03/05/DCOI-%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%E4%B8%8D%E6%98%8E%E7%9A%84%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/" rel="next" title="DCOI 不知道什么意义不明的模拟赛题解">
+                  DCOI 不知道什么意义不明的模拟赛题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

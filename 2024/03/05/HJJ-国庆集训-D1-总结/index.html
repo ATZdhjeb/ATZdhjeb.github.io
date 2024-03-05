@@ -19,30 +19,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"atzdhjeb.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。">
+    <meta name="description" content="T1  感觉是个相当可做的结论题，开题大约 $1$ 分钟发现两种操作都有循环节，一个是 $\log$ 次之后翻转，一个是 $\log$ 次之后还原。然后就往混起来之后的规律和操作交换律上面想了。玩了几组发现没有规律，但是直觉上又想着把整个序列看成若干块，各种 reverse，然后做不出来，拼了 $60$ 分暴力，然后不开 long long 见祖宗。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P1987 摇钱树 做题笔记">
-<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="HJJ 国庆集训 D1 总结">
+<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/05/HJJ-%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD-D1-%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="ATZdhjeb&#39;s Blog">
-<meta property="og:description" content="题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。">
+<meta property="og:description" content="T1  感觉是个相当可做的结论题，开题大约 $1$ 分钟发现两种操作都有循环节，一个是 $\log$ 次之后翻转，一个是 $\log$ 次之后还原。然后就往混起来之后的规律和操作交换律上面想了。玩了几组发现没有规律，但是直觉上又想着把整个序列看成若干块，各种 reverse，然后做不出来，拼了 $60$ 分暴力，然后不开 long long 见祖宗。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-05T08:05:57.000Z">
-<meta property="article:modified_time" content="2024-03-05T08:42:35.677Z">
+<meta property="article:published_time" content="2024-03-05T11:08:50.000Z">
+<meta property="article:modified_time" content="2024-03-05T11:30:15.749Z">
 <meta property="article:author" content="ATZdhjeb">
-<meta property="article:tag" content="做题笔记">
-<meta property="article:tag" content="背包">
-<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="Ad-hoc">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="暴力">
+<meta property="article:tag" content="离线">
+<meta property="article:tag" content="比赛">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/05/HJJ-%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD-D1-%E6%80%BB%E7%BB%93/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/","path":"2024/03/05/P1987-摇钱树-做题笔记/","title":"P1987 摇钱树 做题笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/05/HJJ-%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD-D1-%E6%80%BB%E7%BB%93/","path":"2024/03/05/HJJ-国庆集训-D1-总结/","title":"HJJ 国庆集训 D1 总结"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>P1987 摇钱树 做题笔记 | ATZdhjeb's Blog</title>
+<title>HJJ 国庆集训 D1 总结 | ATZdhjeb's Blog</title>
   
 
 
@@ -166,7 +168,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/05/HJJ-%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD-D1-%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -179,12 +181,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="P1987 摇钱树 做题笔记 | ATZdhjeb's Blog">
+      <meta itemprop="name" content="HJJ 国庆集训 D1 总结 | ATZdhjeb's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          P1987 摇钱树 做题笔记
+          HJJ 国庆集训 D1 总结
         </h1>
 
         <div class="post-meta-container">
@@ -196,7 +198,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-03-05 16:05:57 / 修改时间：16:42:35" itemprop="dateCreated datePublished" datetime="2024-03-05T16:05:57+08:00">2024-03-05</time>
+      <time title="创建时间：2024-03-05 19:08:50 / 修改时间：19:30:15" itemprop="dateCreated datePublished" datetime="2024-03-05T19:08:50+08:00">2024-03-05</time>
     </span>
 
   
@@ -208,15 +210,33 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。</p>
+    <div class="post-body" itemprop="articleBody"><ol>
+<li>T1</li>
+</ol>
+<p>感觉是个相当可做的结论题，开题大约 $1$ 分钟发现两种操作都有循环节，一个是 $\log$ 次之后翻转，一个是 $\log$ 次之后还原。然后就往混起来之后的规律和操作交换律上面想了。玩了几组发现没有规律，但是直觉上又想着把整个序列看成若干块，各种 <code>reverse</code>，然后做不出来，拼了 $60$ 分暴力，<del>然后不开 <code>long long</code> 见祖宗</del>。</p>
 <span id="more"></span>
 
-<p>$n,k\le10^3$</p>
-<p>$a_i,b_i\le10^5$</p>
-<p>一个比较一眼的贪心是按 $b_i$ 对物品排序，然后用 $0&#x2F;1$ 背包的思想依次考虑每个物品选或不选时的贡献。由于这个做法过于一眼，导致我以为它是错的，但是它是对的。证明如下：</p>
-<p>考虑感性理解，因为 $0&#x2F;1$ 背包的答案不受物品加入顺序的影响，所以我们可以任意对物品重定序。而如果一个 $b_i$ 较大的物品和一个 $b_i$ 较小的物品都要选，那它们对答案的贡献都会加上各自 $a_i$，差异仅在于最后减去的 $b_i$ 值。那么把 $b_i$ 大的放在前面先选，可以使得 $b_i$ 的损失最小化。</p>
-<p>然后就做完了。时间复杂度 $O(nk)$。</p>
-<p><strong>多测不清空，10 pts 两行泪。</strong></p>
+
+
+<p>正解是个相当智慧的二进制。打表之后发现操作一是循环左移，操作二是在操作一的基础上异或一个 $1$。然后用两组 $tag$ 分别记录左移了多少位以及哪些位需要异或 $1$。</p>
+<p><del>洛谷月赛原题，黄色的，根本不会</del></p>
+<ol start="2">
+<li>T2</li>
+</ol>
+<p>一眼看出了是一个有限制的前缀最长不降子序列。然后不会做了。然后想到最后也不知道怎么优化，写了 $O(nq\log n)$。</p>
+<p>正解基本和我的想法差不多。但是需要离线询问，一起排序，用数点的方法动态维护出 LIS。</p>
+<ol start="3">
+<li>T3</li>
+</ol>
+<p>一眼神仙 DP。想了一下，糊了一个 $O(n^2)$ 的状态以及 $O(n)$ 的转移，但是改了好久，连第二个样例都过不去。</p>
+<p>正解果然是 DP，但是我从状态设计开始就错了。应该记录上一张牌，牌堆顶，牌堆第二张和第三张。然后可以发现因为只有两种转移，所以可以用 $3$ 维状态加一维 $0&#x2F;1$ 推出第四维，压到 $O(n^3)$ 的状态，$O(1)$ 转移。</p>
+<ol start="4">
+<li>T4</li>
+</ol>
+<p>只看了一眼题，树高 $\log$ 应该是个很有用的性质，但是想不到怎么用。想了一个很假的主席树暴力，没有写（写了应该也没有分）。</p>
+<p>正解神仙转化，首先用类似 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2824">P2824</a> 的思想，把大于当前询问的 $w$ 的边权赋值为 $1$，小于等于的赋值为 $-1$。合法的路径就是权值和为 $0$ 或 $-1$ 的。然后用类似淀粉质的思想去做。注意到树高为 $\log$，所以并不需要真的去点分，照着做就行。</p>
+<p>然后来想怎么做多次询问。我们把询问离线下来，按 $w$ 排个序，两次 $w$ 不同的询问之间就把那些需要改变的边权暴力改了，树高为 $\log$，桶的大小也为 $\log$，总复杂度 $O(n\log^2n)$。</p>
+<p>现在考虑带修。令当前询问的 $w$ 为 $w_1$，修改的为 $w_2$ ，若 $w_1 &lt; w_2$ 或 $w_1 &gt; w_2$，那么这次修改并不会对边权产生仍任何影响，不管。于是可以把修改和询问一起排序，询问前把那些 $w_1 &#x3D; w_2$ 的修改做了即可，总复杂度 $O(n\log^2n+q\log^2n)$。</p>
 
     </div>
 
@@ -226,19 +246,24 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="tag"># 做题笔记</a>
-              <a href="/tags/%E8%83%8C%E5%8C%85/" rel="tag"># 背包</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/tags/Ad-hoc/" rel="tag"># Ad-hoc</a>
+              <a href="/tags/dp/" rel="tag"># dp</a>
+              <a href="/tags/%E6%9A%B4%E5%8A%9B/" rel="tag"># 暴力</a>
+              <a href="/tags/%E7%A6%BB%E7%BA%BF/" rel="tag"># 离线</a>
+              <a href="/tags/%E6%AF%94%E8%B5%9B/" rel="tag"># 比赛</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/03/05/HJJ-%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD-D2-%E6%80%BB%E7%BB%93/" rel="prev" title="HJJ 国庆集训 D2 总结">
+                  <i class="fa fa-angle-left"></i> HJJ 国庆集训 D2 总结
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/03/05/P5038-SCOI2012-%E5%A5%87%E6%80%AA%E7%9A%84%E6%B8%B8%E6%88%8F-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="next" title="P5038 [SCOI2012] 奇怪的游戏 做题笔记">
-                  P5038 [SCOI2012] 奇怪的游戏 做题笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/03/05/AT-joisc2016-h-%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8%E9%A2%98%E8%A7%A3/" rel="next" title="AT_joisc2016_h 回転寿司题解">
+                  AT_joisc2016_h 回転寿司题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

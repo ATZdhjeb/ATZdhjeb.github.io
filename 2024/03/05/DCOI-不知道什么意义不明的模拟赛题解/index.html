@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"atzdhjeb.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="DC 总是能找一些意义不明的奇怪模拟赛让学生打。。。标题还叫“PSC-S 模拟赛”，但是不仅 $4$ 道 DP，还严重超纲。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DCOI 不知道什么意义不明的模拟赛题解">
+<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/05/DCOI-%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%E4%B8%8D%E6%98%8E%E7%9A%84%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="ATZdhjeb&#39;s Blog">
+<meta property="og:description" content="DC 总是能找一些意义不明的奇怪模拟赛让学生打。。。标题还叫“PSC-S 模拟赛”，但是不仅 $4$ 道 DP，还严重超纲。。。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-05T10:54:32.000Z">
+<meta property="article:modified_time" content="2024-03-05T11:04:35.556Z">
+<meta property="article:author" content="ATZdhjeb">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="暴力">
+<meta property="article:tag" content="数数">
+<meta property="article:tag" content="状压 dp">
+<meta property="article:tag" content="LCT">
+<meta property="article:tag" content="主席树">
+<meta property="article:tag" content="dilworth 定理">
+<meta property="article:tag" content="博弈论">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/05/DCOI-%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%E4%B8%8D%E6%98%8E%E7%9A%84%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/05/DCOI-%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%E4%B8%8D%E6%98%8E%E7%9A%84%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/","path":"2024/03/05/DCOI-不知道什么意义不明的模拟赛题解/","title":"DCOI 不知道什么意义不明的模拟赛题解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>DCOI 不知道什么意义不明的模拟赛题解 | ATZdhjeb's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ATZdhjeb's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">emm</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">3.</span> <span class="nav-text">T3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T4"><span class="nav-number">4.</span> <span class="nav-text">T4</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ATZdhjeb"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">ATZdhjeb</p>
+  <div class="site-description" itemprop="description">emm</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/05/DCOI-%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%E4%B8%8D%E6%98%8E%E7%9A%84%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ATZdhjeb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ATZdhjeb's Blog">
+      <meta itemprop="description" content="emm">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="DCOI 不知道什么意义不明的模拟赛题解 | ATZdhjeb's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DCOI 不知道什么意义不明的模拟赛题解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-05 18:54:32 / 修改时间：19:04:35" itemprop="dateCreated datePublished" datetime="2024-03-05T18:54:32+08:00">2024-03-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>DC 总是能找一些意义不明的奇怪模拟赛让学生打。。。标题还叫“PSC-S 模拟赛”，但是不仅 $4$ 道 DP，还严重超纲。。。</p>
+<span id="more"></span>
+
+
+
+<p>据说是 CFLS 的古早模拟赛，又据说当时 CFLS 的最高分是 $120$，不好评价。</p>
+<hr>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p><strong>题意</strong>：给定一个 $n\times m$ 的 $0 &#x2F; 1$ 网格，每次操作可以从左上角画一条到右下角的线，但是只能沿着格线画，而且只能画最短路，即只能向下 &#x2F; 向右。然后把这条线以左的部分的 $0$ 变成 $1$，$1$ 变成 $0$。目标是把网格变成全 $0$ 的，求最少操作多少次。</p>
+<p>数据范围：$1\le n,m\le2000$。</p>
+<p><strong>题解</strong>：有点逆天。</p>
+<p>首先有一个比较显然的贪心，就是每次画一条“最紧的”包含所有 $1$ 位置的线。这个东西非常符合直觉，而且也是对的，具体证明就是平常证贪心的那一套。然后如果直接枚举答案暴力做这个贪心就有 $80$ 分，但是考场上写挂了，蚌。</p>
+<p>为什么这个贪心能拿 $80$ pts 呢？它的复杂度显然是 $O(nmAns)$ 的。而 $80$ 分的数据范围是 $1\le n,m\le300$，于是猜测答案是 $O(n)$ 级别的。证明则考虑每次贪心地画线之后，必然会有一条从左上到右下的对角线 <del>（菜鸡不知道这是主对角线还是副对角线）</del> 被清零。对角线数量就是 $O(n+m)$ 的，那答案的上界也就是 $n+m$。</p>
+<p>有了上界，我们考虑能不能分析出答案的下界。画一条从右上边界到左下角的线（同样走最短路），它会经过一些位置，定义相邻两个格子间的距离它们两个的数是否相同（也就是两个格子同为 $0&#x2F;1$ 则距离为 $0$，否则距离为 $1$），这条线的长度就是它经过的格子的距离和。而在贪心的过程中，你画的每一条线都会与它有一个唯一的交点 <del>（我们想得理想点）</del>，而想要清零这条线，就要让它长度清零。显然一次操作对一条线长度的影响仅在于交界处，它们相交的地方如果是 $1$ 则长度减 $1$，反之则加 $1$。</p>
+<p>我们发现，一次操作可能使线的长度增加，这很烦，考虑消去那些长度增加的线的影响。因为长度增加的线与画的线的交点为 $0$，那么因为我们画的线是“最紧的”，那么从这个点出发，垂直于相交时线的方向作垂线必然经过一个边界上的 $1$。<del>（好像有点抽象，考虑后面把 ZJK 讲课的图蒯过来）</del> 那么我们再从这个 $1$ “走回”原线，得到一条新线。观察到这条新线仅有中间相交的一段与原线不同，而在这一段中，那个边界上的 $1$ 向两个方向都产生了 $1$ 的贡献，而原线中边界上的 $0$ 则产生了 $0$ 的贡献，故新线长度为原线长度加 $2$，而我们惊喜地发现，新线长度在这次操作中减少了！因此，我们只要坚持上述贪心策略，最长线长度将一直减少，那么答案的下界就是最长线的长度，并且在上述过程中，我们已经论证了该下界是可以被达到的。</p>
+<p>于是问题现在转化为：给定一个 $0&#x2F;1$ 网格，定义相邻两点间的距离为它们是否不等，现在从左下角出发，只能向上或向右走，求最多走多长的距离回到右边界或上边界。显然随便 DP 一下就可以了，时间复杂度 $O(nm)$。</p>
+<hr>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p><strong>题意</strong>：给定一张 $n$ 个点的有向图，每条边都有一个颜色，为红绿蓝之一。保证无同色重边，但是不同色的边可能有重边。现在 A 和 B 玩游戏，A 先手，每次可以从当前点出发沿着某条边走一步（如果当前点不存在出边则游戏结束），并把经过的边的颜色告诉 B。轮到 B 时，如果 B 能凭借已知经过的边的颜色推出当前 A 在哪个点，则游戏结束，否则 B 什么也干不了。现在问你在游戏中 A 最多能走多少步。如果游戏不会结束则输出 <code>-1</code>。</p>
+<p>数据范围：$1\le n\le50$。</p>
+<p><strong>题解</strong>：比上一道题拟人点。</p>
+<p>首先不考虑 A 把自己走死的情况，可以到时候判掉，先考虑 B 是怎样推知 A 在哪个点的。我们可以看作 B 心中有一个点集，A 每走一步，B 就会把点集更新为当前点集中所有点该颜色出边到达的点的并集。如果点集大小为 $1$，那么游戏结束。因为 $n$ 很小，所以可以把点集状压起来直接搜，酱紫能得到 $35$ 分的好成绩。据说加个记忆化分数还能再高很多。</p>
+<p>考虑优化这个暴搜。发现我们并不关心点集中到底有哪些点，我们只要点集的大小大于 $1$ 就可以了。我们可以把这个过程抽象成看作点集中有两个“关键点”，是这两个“关键点”路径保证了 B 不能猜出 A 在哪。因此我们在搜索的时候只需要记录两个点作为状态，并用每次通过这两个点的边进行转移。</p>
+<p>注意转移分为两种，一种是从两个点分别走当前颜色的边到另外两个点，另一种是从其中一个点走当前颜色的边道两个点。</p>
+<p>还有一个问题，就是我们并不知道最优解中的关键点是哪一对，没有关系，枚举任意点对都搜一遍就是了，记忆化之后复杂度是 $O(n^4)$ 的。</p>
+<hr>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p><strong>题意</strong>：给定两个长度均为 $n$ 的序列 $a,b$，再给定一个正整数 $s$，满足 $s\le\sum a+\sum b$。现在可以把两个序列各自任意排序，之后让 $s$ 依次减去 $a_1,b_1,a_2,b_2,…$，直到 $s\le0$ 为止，求在所有的 $(n!)^2$ 种排序方法中，有多少种满足是某个 $b_k$ 把 $s$ 减到非正的。答案对 $998244853$ 取模。</p>
+<p>数据范围：$n,\max a,\max b \le 100$，$s\le\sum a+\sum b$。</p>
+<p>时限 4s。</p>
+<p><strong>题解</strong>：首先注意模数。。。</p>
+<p>然后注意到数据范围同样很小，并且时限很长，可以接受一些高复杂度的乱搞。一个比较自然的想法是枚举把 $s$ 减到 $0$ 以下的那个 $b_k$，顺便再枚举一下是第 $j$ 个减到 $0$ 以下的，剩下我们要做的就是算出：</p>
+<ol>
+<li><p>在 $a$ 中选出 $j$ 个数，$b$ 中选出 $j - 1$ 个数，使它们的和位于区间 $[s-1,s-b_k]$ 中的方案数。</p>
+</li>
+<li><p>$a$ 中这 $j$ 个数以及剩下的 $n-j$ 个数的排列方法数。</p>
+</li>
+<li><p>$b$ 中这 $j-1$ 个数以及剩下的 $n-j$ 个数的排列方法数。</p>
+</li>
+</ol>
+<p>显然后面两项的乘积等于 $j!(j-1)!(n-j)!(n-j)!$。考虑求出第一项。</p>
+<p>发现第一项中同时涉及了 $a$，$b$ 两个序列，其中 $b$ 序列还在变化（因为我们在后面的计算中要去除我们枚举的 $b_k$），让人非常不爽。但是此时我们的时间还非常充裕，所以考虑枚举一个 $s’$，表示 $b$ 序列中选出的 $j-1$ 个数的和为 $s’$，此时我们只需要计算在 $a$ 中选出 $j$ 个数，使其和在 $[s-1-s’,s-b_k-s’]$ 中的方案数，以及在 $b$ 中选出 $j-1$ 个数，使其和恰好为 $s’$ 的方案数。</p>
+<p>那么我们设计 $dp_{0&#x2F;1,i,j}$ 表示在 $a&#x2F;b$ 中选取 $i$ 个数，其和恰好为 $j$ 的方案数，显然可以用类似背包的方式转移。那么我们预处理出 $dp_{0,i}$ 的前缀和，即可解决在 $a$ 中选的问题。那 $b$ 呢？注意到这个 DP 是资瓷暴力修改的，即每次删除 $b_k$ 时直接把它的贡献减掉，算完再给它加回去即可。这样每次 DP 一轮都是 $O(ns)$ 的，总共修改 $n$ 轮，$dp_{0,i}$ 的前缀和也需要 $n$ 轮 DP 来算，总的 DP 复杂度为 $O(n^2s)$。而在计算过程中，我们枚举了 $b_k$，$j$，$s’$，枚举的复杂度也是 $O(n^2s)$，其它部分则可以优化至 $O(1)$，故总复杂度为 $O(n^2s)$。</p>
+<hr>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/dp/" rel="tag"># dp</a>
+              <a href="/tags/%E6%9A%B4%E5%8A%9B/" rel="tag"># 暴力</a>
+              <a href="/tags/%E6%95%B0%E6%95%B0/" rel="tag"># 数数</a>
+              <a href="/tags/%E7%8A%B6%E5%8E%8B-dp/" rel="tag"># 状压 dp</a>
+              <a href="/tags/LCT/" rel="tag"># LCT</a>
+              <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" rel="tag"># 主席树</a>
+              <a href="/tags/dilworth-%E5%AE%9A%E7%90%86/" rel="tag"># dilworth 定理</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"># 博弈论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/05/CF1657E-Star-MST-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="prev" title="CF1657E Star MST 做题笔记">
+                  <i class="fa fa-angle-left"></i> CF1657E Star MST 做题笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/05/P3768-%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E5%AD%A6%E9%A2%98-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="next" title="P3768 简单的数学题 做题笔记">
+                  P3768 简单的数学题 做题笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ATZdhjeb</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
