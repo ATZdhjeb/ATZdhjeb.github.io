@@ -19,26 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"atzdhjeb.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="emm">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ATZdhjeb&#39;s Blog">
-<meta property="og:url" content="http://atzdhjeb.github.io/archives/2024/index.html">
+    <meta name="description" content="题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。 $n,k\le10^3$ $a_i,b_i\le10^5$ 一个比较一眼的贪心是按 $b_i$ 对物品排序，然后用 $0&#x2F;1$ 背包的思想依次考虑每个物品选或不选时的贡献。由于这个做法过于一眼，导致我以为它是错的，但是它是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P1987 摇钱树 做题笔记">
+<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="ATZdhjeb&#39;s Blog">
-<meta property="og:description" content="emm">
+<meta property="og:description" content="题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。 $n,k\le10^3$ $a_i,b_i\le10^5$ 一个比较一眼的贪心是按 $b_i$ 对物品排序，然后用 $0&#x2F;1$ 背包的思想依次考虑每个物品选或不选时的贡献。由于这个做法过于一眼，导致我以为它是错的，但是它是">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-05T08:05:57.000Z">
+<meta property="article:modified_time" content="2024-03-05T08:18:50.557Z">
 <meta property="article:author" content="ATZdhjeb">
-<meta property="article:tag" content="emm">
+<meta property="article:tag" content="做题笔记，背包，贪心">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://atzdhjeb.github.io/archives/2024/">
+<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2024/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/","path":"2024/03/05/P1987-摇钱树-做题笔记/","title":"P1987 摇钱树 做题笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | ATZdhjeb's Blog</title>
+<title>P1987 摇钱树 做题笔记 | ATZdhjeb's Blog</title>
   
 
 
@@ -68,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">ATZdhjeb's Blog</h1>
+      <p class="site-title">ATZdhjeb's Blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">emm</p>
@@ -137,69 +139,97 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 2 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ATZdhjeb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ATZdhjeb's Blog">
+      <meta itemprop="description" content="emm">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="P1987 摇钱树 做题笔记 | ATZdhjeb's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          P1987 摇钱树 做题笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2024-03-05 16:05:57 / 修改时间：16:18:50" itemprop="dateCreated datePublished" datetime="2024-03-05T16:05:57+08:00">2024-03-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>题意：有 $n$ 个物品，初始时每个物品的价值为 $a_i$，每天每个物品的价值会降低 $b_i$，你有 $k$ 天时间，每天至多拿一个物品，问你最多能拿到多少价值。</p>
+<p>$n,k\le10^3$</p>
+<p>$a_i,b_i\le10^5$</p>
+<p>一个比较一眼的贪心是按 $b_i$ 对物品排序，然后用 $0&#x2F;1$ 背包的思想依次考虑每个物品选或不选时的贡献。由于这个做法过于一眼，导致我以为它是错的，但是它是对的。证明如下：</p>
+<p>考虑感性理解，因为 $0&#x2F;1$ 背包的答案不受物品加入顺序的影响，所以我们可以任意对物品重定序。而如果一个 $b_i$ 较大的物品和一个 $b_i$ 较小的物品都要选，那它们对答案的贡献都会加上各自 $a_i$，差异仅在于最后减去的 $b_i$ 值。那么把 $b_i$ 大的放在前面先选，可以使得 $b_i$ 的损失最小化。</p>
+<p>然后就做完了。时间复杂度 $O(nk)$。</p>
+<p><strong>多测不清空，10 pts 两行泪。</strong></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-03-05T16:05:57+08:00"
-              content="2024-03-05">
-          03-05
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2024/03/05/P1987-%E6%91%87%E9%92%B1%E6%A0%91-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url">
-          <span itemprop="name">P1987 摇钱树 做题笔记</span>
-        </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0%EF%BC%8C%E8%83%8C%E5%8C%85%EF%BC%8C%E8%B4%AA%E5%BF%83/" rel="tag"># 做题笔记，背包，贪心</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/02/27/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-02-27T20:13:38+08:00"
-              content="2024-02-27">
-          02-27
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2024/02/27/hello-world/" itemprop="url">
-          <span itemprop="name">Hello World</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>
