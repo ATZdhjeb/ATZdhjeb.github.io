@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"atzdhjeb.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这个题单 里面的题解。不按题单顺序，按我做的顺序。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作业题题解">
+<meta property="og:url" content="http://atzdhjeb.github.io/2024/03/24/%E4%BD%9C%E4%B8%9A%E9%A2%98%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="ATZdhjeb&#39;s Blog">
+<meta property="og:description" content="这个题单 里面的题解。不按题单顺序，按我做的顺序。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-24T06:23:32.000Z">
+<meta property="article:modified_time" content="2024-03-24T07:06:39.374Z">
+<meta property="article:author" content="ATZdhjeb">
+<meta property="article:tag" content="数数">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="扫描线">
+<meta property="article:tag" content="珂朵莉树">
+<meta property="article:tag" content="树链剖分">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="单调栈">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://atzdhjeb.github.io/2024/03/24/%E4%BD%9C%E4%B8%9A%E9%A2%98%E9%A2%98%E8%A7%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://atzdhjeb.github.io/2024/03/24/%E4%BD%9C%E4%B8%9A%E9%A2%98%E9%A2%98%E8%A7%A3/","path":"2024/03/24/作业题题解/","title":"作业题题解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>作业题题解 | ATZdhjeb's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ATZdhjeb's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">emm</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#P6801-CEOI2020-%E8%8A%B1%E5%BC%8F%E5%9B%B4%E6%A0%8F"><span class="nav-number">1.</span> <span class="nav-text">P6801 [CEOI2020] 花式围栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P9340-JOISC-2023-Day3-Tourism"><span class="nav-number">2.</span> <span class="nav-text">P9340 [JOISC 2023 Day3] Tourism</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ATZdhjeb"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">ATZdhjeb</p>
+  <div class="site-description" itemprop="description">emm</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://atzdhjeb.github.io/2024/03/24/%E4%BD%9C%E4%B8%9A%E9%A2%98%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ATZdhjeb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ATZdhjeb's Blog">
+      <meta itemprop="description" content="emm">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="作业题题解 | ATZdhjeb's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          作业题题解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-24 14:23:32 / 修改时间：15:06:39" itemprop="dateCreated datePublished" datetime="2024-03-24T14:23:32+08:00">2024-03-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/464384">这个题单</a> 里面的题解。<del>不按题单顺序，按我做的顺序</del>。</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="P6801-CEOI2020-花式围栏"><a href="#P6801-CEOI2020-花式围栏" class="headerlink" title="P6801 [CEOI2020] 花式围栏"></a>P6801 [CEOI2020] 花式围栏</h3><p>给你 $n$ 个放在紧挨着数轴上的矩形，显然这坨东西组成了一个城市天际线之类的玩意，问你这个玩意里面有多少个子矩形，对 $10^9+7$ 取模。$n\le 10^5$。</p>
+<p><del>全题单唯一签到。</del></p>
+<p>首先矩形内部的贡献是容易算的。然后考虑跨矩形的情况，我们可以从左到右扫过每个矩形 $i$，对它左侧的每个矩形 $j$ 维护 $h_j$ 代表 $[j,i]$ 中所有矩形深度的最小值，这个可以用单调栈搞到线性，然后我们把答案加上栈里的每个矩形到 $i$ 的贡献即可，贡献用 $j$ 到 $i$ 的距离和 $h_j$ 是容易算的，这个可以做一个前缀和又搞到线性，所以总复杂度 $O(n)$，有一点小细节。</p>
+<p><del>另外这个 0.1s 的时限是什么鬼啊，CEOI 的评测姬要超人吗？</del></p>
+<hr>
+<h3 id="P9340-JOISC-2023-Day3-Tourism"><a href="#P9340-JOISC-2023-Day3-Tourism" class="headerlink" title="P9340 [JOISC 2023 Day3] Tourism"></a>P9340 [JOISC 2023 Day3] Tourism</h3><p><del>啊为什么我第二个做这题呢？因为是全题单唯一 DS。</del></p>
+<p>给你一个 $n$ 个点的树，和一个长为 $m$ 的序列 $a$，$q$ 次询问，每次给定区间 $[l,r]$，问你 $a_l,a_{l+1},…,a_r$ 这些点建出来的虚树大小。$n,m,q\le10^5$。</p>
+<p>先考虑怎么表示虚树大小这个东西。考虑把每一个关键点（在原树上）到根的路径上的所有点都染色，那么虚树大小就是被染色的点数减去所有关键点 LCA 的深度再加一（LCA 以上的点也会被染色，但是没必要建进虚树，故减去）。那么我们想要维护这个东西，就要维护两样：</p>
+<ol>
+<li>区间 $[l,r]$ 的 LCA。</li>
+<li>把 $[l,r]$ 的所有点到根染色之后被染色点集的大小。</li>
+</ol>
+<p>显然区间 LCA 是好做的，硬上一棵线段树就好了。考虑维护后面那个东西。既然这个题不强制在线，那我们就离线下来做。我们把所有询问按 $l$ 从大到小排序，然后从 $m$ 到 $1$ 扫描线，扫到 $i$ 的时候就把 $a_i$ 到根的路径染上颜色 $i$，记录被染成 $i$ 色的点数（即 $a_i$ 的深度），同时发现 $a_i$ 到根的路径上可能已经有一些点被染上了其它颜色，我们现在把它们覆盖掉了，所以要对被我们覆盖过的每种颜色更新它的点数。这个东西不太能统一操作，所以最好的方法就是对 $a_i$ 到根的所有颜色段分别操作。这里可以用 LCT 的 <code>access</code> 操作，也可以树剖然后硬上一棵 ODT，容易发现这题是卡不掉 ODT 的。查询的时候，因为我们从大到小扫，所以此时最小的颜色就是颜色 $l$，那么所有不超过 $r$ 的颜色的点数和就是上述点集的大小。那么我们还需要一个数据结构来支持单点修改颜色的点数以及查询颜色点数的前缀和，树状数组即可。</p>
+<p>然后就做完了，时间复杂度 $O(q\log^2 m\log n)$（三只 $\log$ 分别是树剖、ODT、树状数组，当然可以用 LCT压到两只，但是据题解说这题的 ODT 做法也是两只的，<del>只不过我不会证而已</del>）。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%95%B0/" rel="tag"># 数数</a>
+              <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+              <a href="/tags/%E6%89%AB%E6%8F%8F%E7%BA%BF/" rel="tag"># 扫描线</a>
+              <a href="/tags/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/" rel="tag"># 珂朵莉树</a>
+              <a href="/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"># 树链剖分</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag"># 单调栈</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/21/CF1446D2-Frequency-Problem-%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="prev" title="CF1446D2 Frequency Problem 做题笔记">
+                  <i class="fa fa-angle-left"></i> CF1446D2 Frequency Problem 做题笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ATZdhjeb</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
